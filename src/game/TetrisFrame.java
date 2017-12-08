@@ -10,7 +10,7 @@ public class TetrisFrame {
 	public TetrisFrame() {
 		frame = new Frame();
 		frame.setTitle("Tetris");
-		frame.setSize(1100, 1200);
+		frame.setSize(950, 1165);
 		frame.addWindowListener(new WindowListener() {
 			@Override
 			public void windowActivated(WindowEvent event) {
