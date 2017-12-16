@@ -8,7 +8,7 @@ public class Predictor {
 	Piece piece2;
 	
 	ArrayList<Piece> pieces = new ArrayList<Piece>();
-	
+	//test
 	public Predictor() {
 		int[][] data = {
 				{1,1,0,0},
