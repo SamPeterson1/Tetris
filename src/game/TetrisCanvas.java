@@ -23,7 +23,7 @@ public class TetrisCanvas extends Canvas{
 		g = image.getGraphics();
 		Font large = new Font("Helvectica", Font.BOLD, 100);
 		Font small = new Font("Helvectica", Font.BOLD, 25);
-		drawMatrix(g, 0, 0, board1, board2, true);
+		drawMatrix(g, 0, 0, board1, board2, p.getPrediction(),  true, true);
 		g.setColor(Color.BLACK);
 		g.setFont(large);
 		g.drawString("TETRIS", 550, 300);
@@ -32,8 +32,8 @@ public class TetrisCanvas extends Canvas{
 		g.setColor(Color.BLACK);
 		g.fillRect(550, 400, 208, 200);
 		g.fillRect(550, 800, 208, 200);
-		drawMatrix(g, 550,400, p.getNextPiece(0, this),  p.getNextPiece(0, this), false);
-		drawMatrix(g, 550,800, p.getNextPiece(1, this),  p.getNextPiece(1, this), false);
+		drawMatrix(g, 550,400, p.getNextPiece(0, this),  p.getNextPiece(0, this), p.getNextPiece(0, this), false, false);
+		drawMatrix(g, 550,800, p.getNextPiece(1, this),  p.getNextPiece(1, this), p.getNextPiece(1, this), false, false);
 		g.setColor(Color.BLACK);
 		g.setFont(small);
 		g.drawString("Next Piece", 760, 500);
@@ -54,7 +54,7 @@ public class TetrisCanvas extends Canvas{
 		return;
 	}
 	
-	public void drawMatrix(Graphics g, int x, int y, int[][] board1, int[][] board2, boolean doBlack) {
+	public void drawMatrix(Graphics g, int x, int y, int[][] board1, int[][] board2, int[][] board3, boolean doBlack, boolean active3) {
 		for(int i = 0; i < board1.length; i ++) {
 			for(int j = 0; j < board1[0].length; j ++) {
 				boolean drewBlack = false;
@@ -79,10 +79,13 @@ public class TetrisCanvas extends Canvas{
 					g.setColor(Color.CYAN);
 				} else if(doBlack){
 					g.setColor(Color.BLACK);
-				} else {
+				} else if(board3[i][j] == 0 | !active3){
 					g.setColor(Color.BLACK);
 					g.fillRect(j * 52 + x, i * 52 + y, 52, 52);
 					drewBlack = true;
+				}
+				if(board3[i][j] != 0 & active3 & board1[i][j] == 0) {
+					g.setColor(Color.DARK_GRAY);
 				}
 				if((doBlack) | (!doBlack & !drewBlack)) {
 					g.fillRoundRect(j * 52 + x, i * 52 + y, 50, 50, 10, 10);

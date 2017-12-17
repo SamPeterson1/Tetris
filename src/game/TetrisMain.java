@@ -55,7 +55,7 @@ public class TetrisMain {
 					}
 				} else if(event.getType() == TetrisEvent.EVENT_KEY_PRESS & (event.getKeyChar() == 's' | event.getKeyChar() == 'l')) {
 					int repetitions = 0;
-					while(!board.overlaps(active, active.getX(), active.getY() + 1) & !(active.getY() + active.getLength() == 21)) {
+					while(!board.overlaps(active, active.getX(), active.getY() + 1) & !(active.getY() + active.getLength() == 22)) {
 						active.setY(active.getY() + 1);
 						if(repetitions > 30) {
 							break;
@@ -71,6 +71,7 @@ public class TetrisMain {
 			System.out.println(board.getGap(0));
 			System.out.println("");
 			board.checkForTetris();
+			p.updatePrediction(active, canvas, board);
 			if(!board.updatePieceBoard(active, false)) {
 				active.reset();
 				active = p.nextPiece();

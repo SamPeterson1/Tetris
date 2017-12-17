@@ -148,6 +148,17 @@ public class Board {
 		this.board = board;
 	}
 	
+	public static boolean overlaps(int[][] m1, int[][] m2) {
+		for(int i = 0; i > 22; i ++) {
+			for(int j = 0; j < 10; j ++) {
+				if(m1[i][j] != 0 & m2[i][j] != 0) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	public boolean updatePieceBoard(Piece piece, boolean moveDown) {
 		int length = piece.getLength();
 		board = new int[22][10];
